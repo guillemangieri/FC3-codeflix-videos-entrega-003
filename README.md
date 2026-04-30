@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Montagem do ambiente de desenvolvimento (Docker e IDE)
 # Criar uma aplicação TypeScript (Core)
 # Criar entidade de Categoria
@@ -36,3 +37,7 @@ raw_location - novo valor
 encoded_location
 status = completed
 
+=======
+# FC3-codeflix-videos-entrega-001
+repositório da primeira entrega de codeflix para o curso de full cycle 3
+>>>>>>> aee684aec2e7b1a171875d680643f8f9cae6cfe5
