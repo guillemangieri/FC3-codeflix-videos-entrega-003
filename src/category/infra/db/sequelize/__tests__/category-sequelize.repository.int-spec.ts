@@ -161,7 +161,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
         );
         expect(searchOutput.toJSON(true)).toMatchObject(
           new CategorySearchResult({
-            items: [categories[0], categories[2]],
+            items: [categories[0]!, categories[2]!],
             total: 3,
             current_page: 1,
             per_page: 2,
@@ -177,7 +177,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
         );
         expect(searchOutput.toJSON(true)).toMatchObject(
           new CategorySearchResult({
-            items: [categories[3]],
+            items: [categories[3]!],
             total: 3,
             current_page: 2,
             per_page: 2,
@@ -205,7 +205,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
               sort: "name",
             }),
             result: new CategorySearchResult({
-              items: [categories[1], categories[0]],
+              items: [categories[1]!, categories[0]!],
               total: 5,
               current_page: 1,
               per_page: 2,
@@ -218,7 +218,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
               sort: "name",
             }),
             result: new CategorySearchResult({
-              items: [categories[4], categories[2]],
+              items: [categories[4]!, categories[2]!],
               total: 5,
               current_page: 2,
               per_page: 2,
@@ -232,7 +232,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
               sort_dir: "desc",
             }),
             result: new CategorySearchResult({
-              items: [categories[3], categories[2]],
+              items: [categories[3]!, categories[2]!],
               total: 5,
               current_page: 1,
               per_page: 2,
@@ -246,7 +246,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
               sort_dir: "desc",
             }),
             result: new CategorySearchResult({
-              items: [categories[4], categories[0]],
+              items: [categories[4]!, categories[0]!],
               total: 5,
               current_page: 2,
               per_page: 2,
@@ -278,7 +278,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
               filter: "TEST",
             }),
             search_result: new CategorySearchResult({
-              items: [categories[2], categories[4]],
+              items: [categories[2]!, categories[4]!],
               total: 3,
               current_page: 1,
               per_page: 2,
@@ -292,7 +292,7 @@ describe("CategorySequelizeRepository Integration Test", () => {
               filter: "TEST",
             }),
             search_result: new CategorySearchResult({
-              items: [categories[0]],
+              items: [categories[0]!],
               total: 3,
               current_page: 2,
               per_page: 2,

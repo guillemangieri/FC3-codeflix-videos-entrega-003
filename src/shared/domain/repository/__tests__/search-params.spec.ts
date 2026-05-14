@@ -85,7 +85,7 @@ describe("SearchParams Unit Tests", () => {
     params = new SearchParams({ sort: null });
     expect(params.sort_dir).toBeNull();
 
-    params = new SearchParams({ sort: undefined });
+    params = new SearchParams({ sort: undefined as any});
     expect(params.sort_dir).toBeNull();
 
     params = new SearchParams({ sort: "" });

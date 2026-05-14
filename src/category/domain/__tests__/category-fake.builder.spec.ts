@@ -45,8 +45,8 @@ describe('CategoryFakerBuilder Unit Tests', () => {
       fakerMany.build();
 
       expect(mockFactory).toHaveBeenCalledTimes(2);
-      expect(fakerMany.build()[0].category_id).toBe(categoryId);
-      expect(fakerMany.build()[1].category_id).toBe(categoryId);
+      expect(fakerMany.build()[0]!.category_id).toBe(categoryId);
+      expect(fakerMany.build()[1]!.category_id).toBe(categoryId);
     });
   });
 
@@ -86,8 +86,8 @@ describe('CategoryFakerBuilder Unit Tests', () => {
       fakerMany.withName((index) => `test name ${index}`);
       const categories = fakerMany.build();
 
-      expect(categories[0].name).toBe(`test name 0`);
-      expect(categories[1].name).toBe(`test name 1`);
+      expect(categories[0]!.name).toBe(`test name 0`);
+      expect(categories[1]!.name).toBe(`test name 1`);
     });
 
     test('invalid too long case', () => {
@@ -137,8 +137,8 @@ describe('CategoryFakerBuilder Unit Tests', () => {
       fakerMany.withDescription((index) => `test description ${index}`);
       const categories = fakerMany.build();
 
-      expect(categories[0].description).toBe(`test description 0`);
-      expect(categories[1].description).toBe(`test description 1`);
+      expect(categories[0]!.description).toBe(`test description 0`);
+      expect(categories[1]!.description).toBe(`test description 1`);
     });
   });
 
@@ -199,8 +199,8 @@ describe('CategoryFakerBuilder Unit Tests', () => {
       fakerMany.withCreatedAt((index) => new Date(date.getTime() + index + 2));
       const categories = fakerMany.build();
 
-      expect(categories[0].created_at.getTime()).toBe(date.getTime() + 2);
-      expect(categories[1].created_at.getTime()).toBe(date.getTime() + 3);
+      expect(categories[0]!.created_at.getTime()).toBe(date.getTime() + 2);
+      expect(categories[1]!.created_at.getTime()).toBe(date.getTime() + 3);
     });
   });
 

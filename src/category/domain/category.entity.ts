@@ -19,6 +19,14 @@ export type CategoryCreateCommand = {
     is_active?: boolean;
 }
 
+export type CategoryOutputProps = {
+  category_id: Uuid;
+  name: string;
+  description: string | null;
+  is_active: boolean;
+  created_at: Date;
+};
+
 export class Category extends Entity {
     category_id: Uuid;
     name: string;
@@ -67,7 +75,7 @@ export class Category extends Entity {
         const validator = CategoryValidatorFactory.create(entity);
         const isValid = validator.validate(entity);
         if (!isValid) {
-            throw new EntityValidationError(validator.errors);
+            throw new EntityValidationError(validator.errors!);
         }
     }
 
@@ -75,7 +83,7 @@ export class Category extends Entity {
         return CategoryFakeBuilder;
     }
 
-    toJSON(): object {
+    toJSON(): CategoryOutputProps {
         return {
             category_id: this.category_id,
             name: this.name,

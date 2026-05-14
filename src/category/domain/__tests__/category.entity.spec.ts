@@ -143,7 +143,7 @@ describe("Category Validator", () => {
     test("should an invalid category with name property", () => {
       const arrange = [];
 
-      expect(() => Category.create({ name: null })).containsErrorMessages({
+      expect(() => Category.create({ name: null as any })).containsErrorMessages({
         name: [
           "name should not be empty",
           "name must be a string",
@@ -189,7 +189,7 @@ describe("Category Validator", () => {
   describe("changeName method", () => {
     it("should a invalid category using name property", () => {
       const category = Category.create({ name: "Movie" });
-      expect(() => category.changeName(null)).containsErrorMessages({
+      expect(() => category.changeName(null as any)).containsErrorMessages({
         name: [
           "name should not be empty",
           "name must be a string",

@@ -178,7 +178,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
       );
       expect(result).toStrictEqual(
         new SearchResult({
-          items: [items[0], items[2]],
+          items: [items[0]!, items[2]!],
           total: 3,
           current_page: 1,
           per_page: 2,
@@ -190,7 +190,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
       );
       expect(result).toStrictEqual(
         new SearchResult({
-          items: [items[3]],
+          items: [items[3]!],
           total: 3,
           current_page: 2,
           per_page: 2,
@@ -214,7 +214,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort: 'name',
           }),
           search_result: new SearchResult({
-            items: [items[1], items[0]],
+            items: [items[1]!, items[0]!],
             total: 5,
             current_page: 1,
             per_page: 2,
@@ -227,7 +227,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort: 'name',
           }),
           search_result: new SearchResult({
-            items: [items[4], items[2]],
+            items: [items[4]!, items[2]!],
             total: 5,
             current_page: 2,
             per_page: 2,
@@ -241,7 +241,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort_dir: 'desc',
           }),
           search_result: new SearchResult({
-            items: [items[3], items[2]],
+            items: [items[3]!, items[2]!],
             total: 5,
             current_page: 1,
             per_page: 2,
@@ -255,7 +255,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort_dir: 'desc',
           }),
           search_result: new SearchResult({
-            items: [items[4], items[0]],
+            items: [items[4]!, items[0]!],
             total: 5,
             current_page: 2,
             per_page: 2,
@@ -295,7 +295,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             filter: 'TEST',
           }),
           result: new SearchResult({
-            items: [items[2], items[4]],
+            items: [items[2]!, items[4]!],
             total: 3,
             current_page: 1,
             per_page: 2,
@@ -309,7 +309,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             filter: 'TEST',
           }),
           result: new SearchResult({
-            items: [items[0]],
+            items: [items[0]!],
             total: 3,
             current_page: 2,
             per_page: 2,

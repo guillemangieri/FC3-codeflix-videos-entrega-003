@@ -22,11 +22,11 @@ describe('CreateCategoryUseCase Unit Tests', () => {
     let output = await useCase.execute({ name: 'test' });
     expect(spyInsert).toHaveBeenCalledTimes(1);
     expect(output).toStrictEqual({
-      id: repository.items[0].category_id.id,
+      id: repository.items[0]!.category_id.id,
       name: 'test',
       description: null,
       is_active: true,
-      created_at: repository.items[0].created_at,
+      created_at: repository.items[0]!.created_at,
     });
 
     output = await useCase.execute({
@@ -36,11 +36,11 @@ describe('CreateCategoryUseCase Unit Tests', () => {
     });
     expect(spyInsert).toHaveBeenCalledTimes(2);
     expect(output).toStrictEqual({
-      id: repository.items[1].category_id.id,
+      id: repository.items[1]!.category_id.id,
       name: 'test',
       description: 'some description',
       is_active: false,
-      created_at: repository.items[1].created_at,
+      created_at: repository.items[1]!.created_at,
     });
   });
 });

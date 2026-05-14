@@ -28,8 +28,8 @@ export class CreateCategoryInput {
   constructor(props: CreateCategoryInputConstructorProps) {
     if (!props) return;
     this.name = props.name;
-    this.description = props.description;
-    this.is_active = props.is_active;
+    this.description = props.description ?? null;
+    this.is_active = props.is_active ?? true;
   }
 }
 

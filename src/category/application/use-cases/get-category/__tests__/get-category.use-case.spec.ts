@@ -31,14 +31,14 @@ describe("GetCategoryUseCase Unit Tests", () => {
     const items = [Category.create({ name: "Movie" })];
     repository.items = items;
     const spyFindById = jest.spyOn(repository, "findById");
-    const output = await useCase.execute({ id: items[0].category_id.id });
+    const output = await useCase.execute({ id: items[0]!.category_id.id });
     expect(spyFindById).toHaveBeenCalledTimes(1);
     expect(output).toStrictEqual({
-      id: items[0].category_id.id,
+      id: items[0]!.category_id.id,
       name: "Movie",
       description: null,
       is_active: true,
-      created_at: items[0].created_at,
+      created_at: items[0]!.created_at,
     });
   });
 });

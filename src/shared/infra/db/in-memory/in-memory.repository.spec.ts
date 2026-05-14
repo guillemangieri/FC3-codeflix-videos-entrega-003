@@ -109,7 +109,7 @@ describe("InMemoryRepository Unit test", () => {
             price: 1,
         });
         await repo.update(entityUpdated);
-        expect(entityUpdated.toJSON()).toStrictEqual(repo.items[0].toJSON());
+        expect(entityUpdated.toJSON()).toStrictEqual(repo.items[0]!.toJSON());
     });
 
 

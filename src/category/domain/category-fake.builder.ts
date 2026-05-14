@@ -87,7 +87,7 @@ export class CategoryFakeBuilder<TBuild = any> {
         //category.validate();
         return category;
       });
-    return this.countObjs === 1 ? (categories[0] as any) : categories;
+    return (this.countObjs === 1 ? categories[0]! : categories) as TBuild;
   }
 
   get category_id() {

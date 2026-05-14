@@ -25,7 +25,7 @@ export class CategoryModelMapper {
     
     Category.validate(category);
     if (category.notification.hasErrors()) {
-      throw new EntityValidationError(category.notification.toJSON());
+      throw new EntityValidationError(category.notification.toJSON() as any);
     }
     return category;
   }

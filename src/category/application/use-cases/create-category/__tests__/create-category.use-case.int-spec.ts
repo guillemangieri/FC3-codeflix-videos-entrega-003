@@ -18,12 +18,13 @@ describe("CreateCategoryUseCase Integration Tests", () => {
   it("should create a category", async () => {
     let output = await useCase.execute({ name: "test" });
     let entity = await repository.findById(new Uuid(output.id));
+    expect(entity).not.toBeNull();
     expect(output).toStrictEqual({
-      id: entity.category_id.id,
+      id: entity!.category_id.id,
       name: "test",
       description: null,
       is_active: true,
-      created_at: entity.created_at,
+      created_at: entity!.created_at,
     });
 
     output = await useCase.execute({
@@ -31,12 +32,13 @@ describe("CreateCategoryUseCase Integration Tests", () => {
       description: "some description",
     });
     entity = await repository.findById(new Uuid(output.id));
+    expect(entity).not.toBeNull();
     expect(output).toStrictEqual({
-      id: entity.category_id.id,
+      id: entity!.category_id.id,
       name: "test",
       description: "some description",
       is_active: true,
-      created_at: entity.created_at,
+      created_at: entity!.created_at,
     });
 
     output = await useCase.execute({
@@ -45,12 +47,13 @@ describe("CreateCategoryUseCase Integration Tests", () => {
       is_active: true,
     });
     entity = await repository.findById(new Uuid(output.id));
+    expect(entity).not.toBeNull();
     expect(output).toStrictEqual({
-      id: entity.category_id.id,
+      id: entity!.category_id.id,
       name: "test",
       description: "some description",
       is_active: true,
-      created_at: entity.created_at,
+      created_at: entity!.created_at,
     });
 
     output = await useCase.execute({
@@ -59,12 +62,13 @@ describe("CreateCategoryUseCase Integration Tests", () => {
       is_active: false,
     });
     entity = await repository.findById(new Uuid(output.id));
+    expect(entity).not.toBeNull();
     expect(output).toStrictEqual({
-      id: entity.category_id.id,
+      id: entity!.category_id.id,
       name: "test",
       description: "some description",
       is_active: false,
-      created_at: entity.created_at,
+      created_at: entity!.created_at,
     });
   });
 });

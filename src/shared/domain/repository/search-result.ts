@@ -15,7 +15,7 @@ export class SearchResult<E extends Entity = Entity> extends ValueObject {
   readonly per_page: number;
   readonly last_page: number;
 
-  constructor(props: SearchResultConstructorProps<A>) {
+  constructor(props: SearchResultConstructorProps<E>) {
     super();
     this.items = props.items;
     this.total = props.total;

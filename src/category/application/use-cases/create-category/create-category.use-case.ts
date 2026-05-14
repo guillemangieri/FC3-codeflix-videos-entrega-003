@@ -14,7 +14,7 @@ export class CreateCategoryUseCase
     const entity = Category.create(input);
 
     if (entity.notification.hasErrors()) {
-      throw new EntityValidationError(entity.notification.toJSON());
+      throw new EntityValidationError(entity.notification.toJSON() as any);
     }
 
     await this.categoryRepo.insert(entity);

@@ -27,7 +27,7 @@ expect.extend({
         return isValid();
       }
 
-      return assertContainsErrorsMessages(validator.errors, received);
+      return assertContainsErrorsMessages(validator.errors!, received);
     }
   },
 });

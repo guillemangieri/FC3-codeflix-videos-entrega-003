@@ -35,7 +35,7 @@ export class UpdateCategoryUseCase
     }
 
     if (category.notification.hasErrors()) {
-      throw new EntityValidationError(category.notification.toJSON());
+      throw new EntityValidationError(category.notification.toJSON() as any);
     }
 
     await this.categoryRepo.update(category);
