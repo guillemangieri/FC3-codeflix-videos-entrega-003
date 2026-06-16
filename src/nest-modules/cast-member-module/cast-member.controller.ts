@@ -6,43 +6,80 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
+  ParseUUIDPipe,
+  HttpCode,
+  Query,
 } from '@nestjs/common';
-import { CastMemberService } from './cast-member.service';
-import { CreateCastMemberDto } from './dto/create-cast-member.dto';
-import { UpdateCastMemberDto } from './dto/update-cast-member.dto';
-import { CastMemberPresenter } from './cast-members.presenter';
-import { CastMemberOutput } from '@core/cast-member/application/use-cases/common/cast-member-output';
 
-@Controller('cast-member')
-export class CastMemberController {
-  constructor(private readonly castMemberService: CastMemberService) {}
+import { UpdateCastMemberDto } from './dto/update-cast-member.dto';
+import {
+  CastMemberCollectionPresenter,
+  CastMemberPresenter,
+} from './cast-members.presenter';
+import { CastMemberOutput } from '@core/cast-member/application/use-cases/common/cast-member-output';
+import { DeleteCastMemberUseCase } from '@core/cast-member/application/use-cases/delete-cast-members/delete-cast-member.use-case';
+import { CreateCastMemberUseCase } from '@core/cast-member/application/use-cases/create-cast-members/create-cast-member.use-case';
+import { UpdateCastMemberUseCase } from '@core/cast-member/application/use-cases/update-cast-members/update-cast-member.use-case';
+import { GetCastMemberUseCase } from '@core/cast-member/application/use-cases/get-cast-member/get-cast-member.use-case';
+import { ListCastMembersUseCase } from '@core/cast-member/application/use-cases/list-cast-members/list-cast-members.use-case';
+import { CreateCastMemberDto } from './dto/create-cast-member.dto';
+import { SearchCastMemberDto } from './dto/search-cast-members.dto';
+import { UpdateCastMemberInput } from '@core/cast-member/application/use-cases/update-cast-members/update-cast-member.input';
+
+@Controller('cast-members')
+export class CastMembersController {
+  @Inject(CreateCastMemberUseCase)
+  private createUseCase: CreateCastMemberUseCase | undefined;
+
+  @Inject(UpdateCastMemberUseCase)
+  private updateUseCase: UpdateCastMemberUseCase | undefined;
+
+  @Inject(DeleteCastMemberUseCase)
+  private deleteUseCase: DeleteCastMemberUseCase | undefined;
+
+  @Inject(GetCastMemberUseCase)
+  private getUseCase: GetCastMemberUseCase | undefined;
+
+  @Inject(ListCastMembersUseCase)
+  private listUseCase: ListCastMembersUseCase | undefined;
 
   @Post()
-  create(@Body() createCastMemberDto: CreateCastMemberDto) {
-    return this.castMemberService.create(createCastMemberDto);
+  async create(@Body() createCastMemberDto: CreateCastMemberDto) {
+    const output = await this.createUseCase!.execute(createCastMemberDto);
+    return CastMembersController.serialize(output);
   }
 
   @Get()
-  findAll() {
-    return this.castMemberService.findAll();
+  async search(@Query() searchParams: SearchCastMemberDto) {
+    const output = await this.listUseCase!.execute(searchParams);
+    return new CastMemberCollectionPresenter(output);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.castMemberService.findOne(+id);
+  async findOne(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
+  ) {
+    const output = await this.getUseCase!.execute({ id });
+    return CastMembersController.serialize(output);
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
+  async update(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
     @Body() updateCastMemberDto: UpdateCastMemberDto,
   ) {
-    return this.castMemberService.update(+id, updateCastMemberDto);
+    const input = new UpdateCastMemberInput({ id, ...updateCastMemberDto });
+    const output = await this.updateUseCase!.execute(input);
+    return CastMembersController.serialize(output);
   }
 
+  @HttpCode(204)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.castMemberService.remove(+id);
+  remove(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
+  ) {
+    return this.deleteUseCase!.execute({ id });
   }
 
   static serialize(output: CastMemberOutput) {

@@ -15,8 +15,7 @@ export class CreateCastMemberInput {
   @IsNotEmpty()
   type: CastMemberTypes;
 
-  constructor(props?: CreateCastMemberInputConstructorProps) {
-    if (!props) return;
+  constructor(props: CreateCastMemberInputConstructorProps) {
     this.name = props.name;
     this.type = props.type;
   }

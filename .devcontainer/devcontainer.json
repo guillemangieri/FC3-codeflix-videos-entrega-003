@@ -50,7 +50,11 @@
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash"
       },
-      "extensions": ["orta.vscode-jest", "firsttris.vscode-jest-runner","humao.rest-client"]
+      "extensions": [
+        "orta.vscode-jest",
+        "firsttris.vscode-jest-runner",
+        "humao.rest-client"
+      ]
     }
   },
   "mounts": [
